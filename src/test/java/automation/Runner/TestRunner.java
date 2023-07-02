@@ -39,7 +39,7 @@ public class TestRunner  {
                                         break;
                                 case "firefox":
                                         // Configuración del FirefoxDriver
-                                        System.setProperty("webdriver.gecko.driver", "ruta/al/geckodriver");
+                                        System.setProperty("webdriver.gecko.driver", "src/test/resources/chromedriver/geckodriver.exe");
                                         driver = new FirefoxDriver();
                                         break;
                                 case "edge":

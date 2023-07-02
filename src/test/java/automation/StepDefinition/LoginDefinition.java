@@ -1,17 +1,27 @@
 package automation.StepDefinition;
 
-import automation.Runner.TestRunner;
-import org.openqa.selenium.WebDriver;
+import automation.Page.WebBasePage;
 import io.cucumber.java.en.Given;
+
+import static automation.Runner.TestRunner.driver;
+
 
 public class LoginDefinition {
 
-    private WebDriver driver;
+    static WebBasePage webBasePage;
+
 
     @Given("^Abro el navegador \"(.*)\"$")
-    public void abrirNavegador(String browser) {
-        WebDriver driver = TestRunner.getDriver(browser);
+    public static void abrirNavegador(String browser) {
+        WebBasePage.navigateToGoogle(browser);
+        driver.navigate().refresh();
+        System.out.println("Se abre el navegador: "+ browser +" correctamente.");
+        webBasePage.ClearBrowserCache();
+        System.out.println("Se elimina el cache del navegador: "+ browser +" correctamente.");
+    }
 
+    @Given("^Ingreso a la pagina de busqueda de Google$")
+    public void ingresoALaPaginaDeBusquedaDeGoogle() {
 
     }
 

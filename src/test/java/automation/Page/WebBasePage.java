@@ -1,27 +1,31 @@
 package automation.Page;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
+import static automation.Runner.TestRunner.getDriver;
 
-public class webBasePage {
+public class WebBasePage {
 
     private static final int WAIT_TIMEOUT = 30;
     private static final int POLLING = 100;
 
-    protected static final String BASE_URL = "https://www.google.com";
-    final WebDriver driver;
+    protected static final String GOOGLE_URL = "https://www.google.com";
+
+    private WebDriver driver;
     private final WebDriverWait wait;
 
-    public webBasePage(WebDriver driver) {
+    public WebBasePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, WAIT_TIMEOUT, POLLING);
+        PageFactory.initElements(driver, this);
     }
 
-    protected WebDriver getDriver() {
-        return driver;
+    public static void navigateToGoogle(String browser) {
+        WebDriver driver = getDriver(browser);
+        driver.get(GOOGLE_URL);
     }
 
     protected void waitForElementToAppear(WebElement element) {
@@ -80,7 +84,7 @@ public class webBasePage {
     }
 
     public void scrollDown() {
-        Dimension size = this.getDriver().manage().window().getSize();
+        Dimension size = this.driver.manage().window().getSize();
         int startPoint = (int)((double)size.getHeight() * 0.7D);
         int endPoint = (int)((double)size.getHeight() * 0.4D);
         ((JavascriptExecutor)driver).executeScript("scroll("+startPoint+","+endPoint+")");
@@ -91,7 +95,7 @@ public class webBasePage {
     }
 
     public String getTextViaJavascript(WebElement element) {
-        JavascriptExecutor javascriptExecutor = ((JavascriptExecutor) getDriver());
+        JavascriptExecutor javascriptExecutor = ((JavascriptExecutor) driver);
         Object stringRetorno = javascriptExecutor.executeScript("return arguments[0].value;", element);
         return String.valueOf(stringRetorno);
     }
