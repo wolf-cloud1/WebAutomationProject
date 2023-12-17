@@ -6,7 +6,7 @@
 
 
   Scenario: Realizar una búsqueda en el navegador
-    Given Abro el navegador "chrome"
+    Given Abro el navegador "firefox"
 #    When Ingreso a la página de búsqueda de Google
 #    And Realizo una búsqueda de "Selenium"
 #    Then Verifico los resultados de la búsqueda

@@ -5,6 +5,7 @@ El propósito de este proyecto es tener un proyecto base en el cual pueda desarr
 
 Tecnologías utilizadas para el proyecto:
 - Utilicé Java 18.0.2.1. También es compatible con el Java Amazon Corretto Version 1.8.0_342.
+- No compatible con Java 11.
 - Cucumber - gherkin.
 - Page Factory POM.
 - Selenium WebDriver.
